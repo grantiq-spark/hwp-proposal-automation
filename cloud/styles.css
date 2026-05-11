@@ -1,0 +1,251 @@
+:root {
+  --bg: #0a0d12;
+  --panel: #11151c;
+  --panel-2: #161b24;
+  --border: #1f2733;
+  --text: #e8eef7;
+  --muted: #8a96aa;
+  --accent: #4f8cff;
+  --accent-hover: #6aa0ff;
+  --good: #36c576;
+  --warn: #f5b042;
+  --bad: #f15a5a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI",
+               "Noto Sans KR", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px 36px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.lede {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 24px;
+  font-size: 14px;
+}
+
+.lede strong { color: var(--text); }
+
+.upload {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+label.textField,
+label.drop {
+  display: grid;
+  gap: 8px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+label span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+label input[type="password"],
+label input[type="text"],
+label textarea,
+label select {
+  width: 100%;
+  background: #0c1118;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+label textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+label input:focus,
+label textarea:focus,
+label select:focus {
+  border-color: var(--accent);
+}
+
+label input[type="file"] {
+  width: 100%;
+  background: #0c1118;
+  color: var(--text);
+  padding: 8px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 13px;
+}
+
+label .hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+label.drop strong {
+  font-weight: 500;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  padding: 12px 22px;
+  font: inherit;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+button:hover { background: var(--accent-hover); }
+button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.status {
+  margin-top: 28px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.status.hidden { display: none; }
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.metrics .label {
+  font-size: 12px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.metrics strong { font-size: 16px; }
+
+#jobLog {
+  background: #06090e;
+  color: #bcd0ea;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-family: ui-monospace, "SF Mono", Monaco, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  max-height: 260px;
+  overflow: auto;
+  margin: 0;
+}
+
+.downloads {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.downloads a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.downloads a:hover { background: var(--accent-hover); }
+.downloads a.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.howto {
+  margin-top: 26px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+
+.howto summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.howto ol {
+  margin: 10px 0 4px;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.howto code {
+  background: #0c1118;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, "SF Mono", Monaco, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--text);
+}

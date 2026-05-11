@@ -46,3 +46,13 @@ Open `http://localhost:8787`.
 ## Deployment
 
 Use GitHub for source hosting, but run the app on a Windows VM or workstation. Word and Hancom Hangul COM automation is not reliable in a headless Linux container or serverless hosting platform.
+
+---
+
+## Cloud subdirectory (`cloud/`)
+
+A static, browser-only version is in `cloud/` for hosting on Vercel / Netlify / GitHub Pages.
+It generates only the GPT Markdown draft + a downloadable runner zip; the actual Word/Hangul
+conversion still runs on the user's own Windows PC via the bundled scripts.
+
+See `cloud/README.md` for the deployment recipe.
