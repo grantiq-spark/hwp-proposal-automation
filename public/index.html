@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HWP Proposal Automation</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel">
+        <div class="heading">
+          <p class="eyebrow">Template first, GPT draft, final HWPX</p>
+          <h1>한글 제안서 자동 작성기</h1>
+        </div>
+
+        <form id="uploadForm" class="upload">
+          <div class="mode">
+            <label><input type="radio" name="mode" value="gpt" checked /> HWPX 양식에서 GPT 초안 작성</label>
+            <label><input type="radio" name="mode" value="docx" /> DOCX 직접 변환</label>
+          </div>
+
+          <div id="gptFields" class="fieldGrid">
+            <label class="drop">
+              <input id="templateInput" type="file" name="template" accept=".hwpx" />
+              <span>작성할 한글 양식 HWPX</span>
+              <strong id="templateName">선택된 파일 없음</strong>
+            </label>
+
+            <label class="textField wide">
+              <span>작성 지시</span>
+              <textarea id="briefInput" name="brief" rows="8" placeholder="예: 산업통상협력개발지원사업 FS 제안서 초안을 작성. 주관기관은 (주)움틀, 바이오 소부장 ODA, 이집트/케냐/가나 확산 전략 중심..."></textarea>
+            </label>
+
+            <label class="textField wide">
+              <span>추가 참고자료</span>
+              <textarea id="referenceInput" name="reference" rows="6" placeholder="회사 소개, 제품군, 국가별 정보, 예산, 일정, 파트너 후보 등을 붙여넣기"></textarea>
+            </label>
+          </div>
+
+          <div id="docxFields" class="fieldGrid hidden">
+            <label class="drop wide">
+              <input id="docxInput" type="file" name="docx" accept=".docx" />
+              <span>이미 작성된 DOCX</span>
+              <strong id="docxName">선택된 파일 없음</strong>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit">자동 작성 시작</button>
+          </div>
+        </form>
+
+        <section id="statusCard" class="status hidden">
+          <div class="metrics">
+            <div>
+              <span class="label">상태</span>
+              <strong id="jobStatus">대기</strong>
+            </div>
+            <div>
+              <span class="label">평균 정합률</span>
+              <strong id="jobScore">-</strong>
+            </div>
+          </div>
+          <pre id="jobLog"></pre>
+          <div id="downloads" class="downloads"></div>
+        </section>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
