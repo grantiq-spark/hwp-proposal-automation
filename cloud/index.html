@@ -10,12 +10,13 @@
     <main class="shell">
       <section class="panel">
         <div class="heading">
-          <p class="eyebrow">DOCX → HWPX runner builder · no AI, no API key</p>
+          <p class="eyebrow">DOCX → HWPX · 더블클릭 한 번 · 터미널 안 보임</p>
           <h1>DOCX → HWP 변환 번들 빌더</h1>
           <p class="lede">
-            가지고 계신 <strong>DOCX 파일</strong>을 올리면, 그 파일과 한컴 한글 변환 스크립트를 한 ZIP으로
-            묶어 다운로드해 드립니다. 다운받은 ZIP을 본인 Windows PC에서 풀고 <code>run.cmd</code>를
-            더블클릭하면 <code>final.hwpx</code>가 생성돼요. 어떤 API 키도 필요 없고, 어떤 데이터도 서버에 저장되지 않습니다.
+            <strong>DOCX 파일</strong>을 올리면 한 묶음 ZIP을 만들어 드립니다.
+            ZIP을 본인 Windows PC에서 풀고 <code>convert.vbs</code> 를
+            <strong>더블클릭만</strong> 하면 됩니다. 검은 창 안 떠요.
+            API 키 필요 없고, 어떤 데이터도 서버에 저장되지 않아요.
           </p>
         </div>
 
@@ -31,14 +32,14 @@
             <label class="textField">
               <span>레이아웃 stretch 비율 (Factor)</span>
               <input id="factor" type="text" value="2.02" />
-              <small class="hint">한글 변환 후 페이지 비율 보정용. 기본 2.02. 결과가 너무 길거나 짧으면 조정.</small>
+              <small class="hint">한글 변환 후 페이지 비율 보정. 기본 2.02. 결과가 너무 길거나 짧으면 1.8~2.3 사이에서 조정.</small>
             </label>
 
             <label class="textField">
               <span>비교 리포트 생성</span>
               <select id="compare">
-                <option value="yes" selected>예 (DOCX↔HWPX PDF 렌더링 비교 - ImageMagick + Ghostscript 필요)</option>
-                <option value="no">아니오 (변환만)</option>
+                <option value="no" selected>아니오 (빠른 변환만 — 권장)</option>
+                <option value="yes">예 (PDF 비교 리포트 — ImageMagick + Ghostscript 필요)</option>
               </select>
             </label>
           </details>
@@ -64,36 +65,36 @@
         </section>
 
         <details class="howto" open>
-          <summary>받은 ZIP을 내 PC에서 실행하는 법</summary>
+          <summary>받은 ZIP 실행하기 — 클릭 3번이면 끝</summary>
           <ol>
-            <li>다운로드한 <code>hwp-runner-XXXXXX.zip</code> 의 압축을 적당한 폴더에 풉니다.</li>
-            <li><strong>필수 설치 확인:</strong>
-              <ul>
-                <li>Microsoft Word (Office 2016+ 권장)</li>
-                <li>한컴 한글 2020 — 한 번은 직접 실행해서 라이선스 통과시켜 두기</li>
-              </ul>
-            </li>
-            <li><strong>선택 설치</strong> (비교 리포트 생성을 켰을 때만):
-              <ul>
-                <li>ImageMagick — <a href="https://imagemagick.org/script/download.php#windows" target="_blank">imagemagick.org</a></li>
-                <li>Ghostscript — <a href="https://www.ghostscript.com/releases/gsdnld.html" target="_blank">ghostscript.com</a></li>
-              </ul>
-            </li>
-            <li>풀어진 폴더에서 <code>run.cmd</code> 를 더블클릭. 또는 PowerShell에서 해당 폴더로 이동 후 <code>powershell -ExecutionPolicy Bypass -File .\run.ps1</code> 실행.</li>
-            <li>창에 <code>=== DONE</code> 이 보이면 같은 폴더의 <code>final.hwpx</code> 를 한글로 열어보세요.</li>
-            <li>변환이 마음에 안 들면 <code>run.cmd</code> 를 메모장에서 열어 <code>-Factor 2.02</code> 값을 1.8~2.3 사이에서 조정해 보세요.</li>
+            <li>다운로드 폴더의 <code>hwp-runner-XXXXXX.zip</code> <strong>우클릭 → "압축 풀기"</strong></li>
+            <li>풀어진 폴더에 들어가서 <code>convert.vbs</code> 를 <strong>더블클릭</strong></li>
+            <li>다이얼로그 "변환할까요?" 가 뜨면 <strong>예</strong> 클릭. 그 다음부터는 마우스/키보드 건드리지 마세요.</li>
+            <li>30초~1분 동안 Word와 한컴 한글이 자동으로 잠깐씩 떴다 사라집니다.</li>
+            <li>"완료! 폴더 열까요?" 다이얼로그가 뜨면 <strong>예</strong> 클릭 → 폴더에 <code>final.hwpx</code> 가 보입니다. 한글로 열어보세요.</li>
           </ol>
+          <p class="hint">⚠️ 검은 터미널 창을 보고 싶지 않다면 <code>convert.vbs</code> 만 더블클릭하세요. <code>run.cmd</code> 는 디버깅용입니다.</p>
         </details>
 
         <details class="howto">
-          <summary>변환이 잘 안 될 때 (트러블슈팅)</summary>
+          <summary>필수 설치 / 트러블슈팅</summary>
+          <p><strong>필수 (Windows PC):</strong></p>
           <ul>
-            <li><code>Word.Application not found</code>: Microsoft Word 정상 설치/실행 가능 상태인지 확인. Office 365 또는 정품 Office 필요.</li>
-            <li><code>Cannot create HwpCtrl</code>: 한컴 한글 2020 설치 후 한 번 직접 실행해서 라이선스 인증을 통과시키세요.</li>
-            <li><code>ExecutionPolicy</code> 에러: PowerShell을 일반 사용자 권한으로 열고 <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code>.</li>
-            <li>한컴 한글 "스크립트 보안" 경고: 한글 → 도구 → 환경설정 → 보안 → 스크립트 보안 → "보통" 또는 "낮음".</li>
-            <li>변환된 페이지 레이아웃이 깨짐: Factor 값을 다르게 시도. 표가 많으면 보통 1.9~2.1 사이가 좋습니다.</li>
-            <li>compare 단계 실패: 비교 리포트는 선택이라 변환 자체와는 무관. <code>run.ps1</code>에서 <code>compare</code> 호출 부분 주석 처리 가능.</li>
+            <li><strong>Microsoft Word</strong> — 정품 또는 Office 365</li>
+            <li><strong>한컴 한글 2020</strong> — 한 번은 직접 실행해 라이선스 통과시켜 두기</li>
+          </ul>
+          <p><strong>비교 리포트 옵션을 켰을 때만 추가:</strong></p>
+          <ul>
+            <li><a href="https://imagemagick.org/script/download.php#windows" target="_blank">ImageMagick</a></li>
+            <li><a href="https://www.ghostscript.com/releases/gsdnld.html" target="_blank">Ghostscript</a></li>
+          </ul>
+          <p><strong>문제가 생기면:</strong></p>
+          <ul>
+            <li><code>convert.vbs</code> 가 빨간 에러 다이얼로그를 띄우면, 같은 폴더의 <code>run.cmd</code> 를 더블클릭해보세요. 검은 창에 자세한 에러 로그가 나옵니다.</li>
+            <li>"Word.Application not found" → Microsoft Word 재설치/수리</li>
+            <li>"Cannot create HwpCtrl" → 한컴 한글 2020을 한 번 직접 실행해서 라이선스 인증 통과</li>
+            <li>한컴 한글 스크립트 보안 경고 → 한글 → 도구 → 환경설정 → 보안 → 스크립트 보안 → "보통" 또는 "낮음"</li>
+            <li>변환된 페이지가 너무 길거나 짧음 → 고급 옵션의 Factor 값을 1.8~2.3 사이로 조정 후 다시 ZIP 받기</li>
           </ul>
         </details>
       </section>
